@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@300&display=swap');
+
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  text-decoration: underline;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.input-field {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 75vh;
+  transform: translateX(-25%);
+  gap: 10px
+}
+
+
+.title {
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.upload-button {
+  border-radius: 20px;
+  background-color: #12c9ff;
+  border: none;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.upload-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about {
+  display: inline;
+  position: absolute; 
+  text-align: center;
+  justify-content: center;
+  left: 61vw;
+  top: 32%;
+  width: 400px;
+  z-index: 10;
+  font-size: 25px;
+  transition: transform 2s;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.emphasized-text {
+  color: #12c9ff;
+}
+
+.faded {
+  opacity: 0
+}
+
+

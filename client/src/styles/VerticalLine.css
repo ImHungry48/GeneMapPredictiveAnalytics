@@ -1,0 +1,24 @@
+.vertical-line {
+    position: absolute;
+    left: 50%; 
+    height: 80%;
+    border-left: 2px solid black;
+    top: 75px;
+    z-index: 1000;
+    transition: transform 2s ease-in-out;
+}
+
+.sweep-left {
+    transform: translateX(-100vw);
+}
+
+.sweeper-wipe {
+    width: 100vw;
+    position: absolute;
+    background: white;
+    top: 75px;
+    left: 51%;
+    z-index: 10;
+    height: 100vw;
+    transition: transform 2s ease-in-out;
+}
