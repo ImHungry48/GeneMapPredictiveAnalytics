@@ -2,16 +2,11 @@ import React from 'react';
 import '../App.css'; 
 import InputField from './InputField'
 import VerticalLine from './VerticalLine';
+import About from './About';
+import Header from './Header';
 
 
-const Header = () => (
-  <header className="header">
-    <div className="logo">Project Mid</div>
-    <ul className="navigation">
-          {/* THROW IN NAVIGATION HERE */}
-    </ul>
-  </header>
-);
+
 
 function Welcome() {
   return (
@@ -19,6 +14,7 @@ function Welcome() {
       <Header />
       <InputField />
       <VerticalLine />
+      <About />
     </div>
   );
 }

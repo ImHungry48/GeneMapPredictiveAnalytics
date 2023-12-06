@@ -8,9 +8,10 @@ function InputField() {
     let handleClick = () => {
         document.getElementById('line').classList.add('sweep-left');
         document.getElementById('sweeper').classList.add('sweep-left');
+        document.getElementById('about-section').classList.add('faded')
         setTimeout(() => {
             navigate('/loading')
-        }, 650)
+        }, 1100)
     }
 
     return (
