@@ -2,6 +2,9 @@ import sys
 import Bio as bp
 from Bio import SeqIO
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
+import json
+
+# ––––––––––––––––––––– Is this still needed? ––––––––––––––––––––– #
 
 # Parses the OMIM genemap2.txt database to seperate each line into a 2D array
 def parse_omim(omim):
@@ -30,13 +33,19 @@ def filter_results(parsed_omim, max_len):
 def print_gene_names(filtered_omim):
   for element in filtered_omim:
     print(element[7])
-    
 
-# Pseudocode:
-# Start off with an import of the genomics file
-# Parse the genomics file into an array
-# Filter the array to only include genes that are less than a certain length
+# –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– #
 
+
+# ––––––––––––––––––––– New Code: Matching ––––––––––––––––––––– #
+
+# Approximate matching algorithm between two genomes
+def approximate_match(good_genome, patient_genome):
+  
+  pass
+
+
+# Get the good genome from a hardcoded file
 def get_good_genes():
   # Get the good genome from our database
   # Need to find the file again and put in the repository
@@ -47,6 +56,7 @@ def get_good_genes():
   return FastqGeneralIterator(filename)
 
 
+# Gets the patient genome from a given filename
 def get_patient_genes(filename):
   open_file = open(filename, "r")
   # Assuming Fastq format:
@@ -61,12 +71,21 @@ def get_patient_genes(filename):
   # genome = SeqIO.QualityIO.FastqGeneralIterator(open_file)
 
 
-def run_analysis(patient_gene, good_genome):
+# Runs the different analyses on the patient genome
+# Returns a dictionary of the results
+def run_analysis(patient_genome, good_genome):
+  # First do 
   pass
+
+# Converts the results dictionary to a JSON string to be sent to the frontend
+def send_json(results):
+  return json.dumps(results)
 
 def main():
   filename = sys.args[1]
   
   good_genome = get_good_genes()
   patient_genome = get_patient_genes(filename)
-  run_analysis(patient_genome,good_genome)
+  results = run_analysis(patient_genome,good_genome)
+  
+  return send_json(results)
