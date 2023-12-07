@@ -2,6 +2,7 @@ import sys
 import Bio as bp
 from Bio import SeqIO, Align
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
+import pandas as pd
 import json
 
 # ––––––––––––––––––––– Is this still needed? ––––––––––––––––––––– #
@@ -52,6 +53,38 @@ def approximate_match(good_genome, patient_genome):
   pass
 
 
+# Print out genomes and what are the matches
+def print_matches(matches):
+  for match in matches:
+    print(match)
+    
+  return
+
+
+def get_all_errors(clinvar_dataset):
+  # Get all the errors from the clinvar dataset
+  # and return a list of all the errors
+  open_file = open(clinvar_dataset, "r")
+  errors = {}
+  
+  
+  i = 0
+  for line in open_file:
+    if line[0] == "Name": continue
+    
+    line = line.split("\t")
+    if i < 10:
+      print(line)
+    
+    
+    # Parse the line
+    # Add to the dictionary
+    
+    i += 1
+  
+  
+  return
+
 # Get the good genome from a hardcoded file
 def get_good_genes():
   # Get the good genome from our database
@@ -72,7 +105,6 @@ def get_patient_genes(filename):
   # genome = SeqIO.parse(open_file, "fastq")
   # Filtering on quality scores?
   
-  
   # Fast form if we find that the above takes too long:
   # Operates on tuples of (title, sequence, quality) rather than SeqRecord objects
   # genome = SeqIO.QualityIO.FastqGeneralIterator(open_file)
@@ -89,10 +121,19 @@ def send_json(results):
   return json.dumps(results)
 
 def main():
-  filename = sys.args[1]
+  # filename = sys.args[1]  
   
-  good_genome = get_good_genes()
-  patient_genome = get_patient_genes(filename)
-  results = run_analysis(patient_genome,good_genome)
+  
+  get_all_errors("clinvar_result.txt")
+  
+  # good_genome = get_good_genes()
+  # patient_genome = get_patient_genes(filename)
+  # results = run_analysis(patient_genome,good_genome)
+  
+  # TODO: REMOVE THE FOLLOWING LINE
+  results = {"test1": 0.53, "test2": 0.23, "test3": 0.12, "test4": 0.02, "test5": 0.01}
   
   return send_json(results)
+  
+if __name__ == "__main__":
+    main()
