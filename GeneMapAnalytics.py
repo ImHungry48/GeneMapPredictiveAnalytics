@@ -74,14 +74,14 @@ def get_all_errors(clinvar_dataset):
     
     line = line.split("\t")
     if i < 10:
-      print(line)
+      None
+      # print(line)
     
-    
+    i += 1
     # Parse the line
     # Add to the dictionary
     
-    i += 1
-  
+    
   
   return
 
