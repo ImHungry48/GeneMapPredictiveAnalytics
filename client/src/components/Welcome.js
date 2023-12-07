@@ -11,7 +11,6 @@ import Header from './Header';
 function Welcome() {
   return (
     <div className="App">
-      <Header />
       <InputField />
       <VerticalLine />
       <About />

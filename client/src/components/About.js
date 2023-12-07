@@ -3,7 +3,7 @@ import React from "react";
 function About() {
     return(
         <p id='about-section' className='about'>
-            <span className="emphasized-text">Onco Genomic Insights</span> offers predictive insights into an individual's 
+            <span className="emphasized-text">OG Insights</span> offers predictive insights into an individual's 
             health risks based on their genetic makeup, creating 
             avenues for personalized medicine and proactive healthcare 
             strategies.

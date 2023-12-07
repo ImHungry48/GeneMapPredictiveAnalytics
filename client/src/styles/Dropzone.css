@@ -7,7 +7,7 @@
     cursor: pointer;
     width: 30%;
   }
-  
+
   .dropzone.active {
     border-color: #0000ff;
   }
