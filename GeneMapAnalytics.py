@@ -1,6 +1,6 @@
 import sys
 import Bio as bp
-from Bio import SeqIO
+from Bio import SeqIO, Align
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
 import json
 
@@ -37,10 +37,17 @@ def print_gene_names(filtered_omim):
 # –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– #
 
 
-# ––––––––––––––––––––– New Code: Matching ––––––––––––––––––––– #
+# –––––––––––––––––––––—— New Code: Matching –––––––––––––––––––––—— #
 
 # Approximate matching algorithm between two genomes
 def approximate_match(good_genome, patient_genome):
+
+  
+  # If we can use the biopython code:
+  aligner = Align.PairwiseAligner()
+  # aligner.mode = 'global' #Default mode is global, can switch over to local alignment mode when needed 
+  score = aligner.score(good_genome, patient_genome) 
+  # pairwise2.align.
   
   pass
 
