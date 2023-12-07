@@ -5,7 +5,7 @@ from Bio.SeqIO.QualityIO import FastqGeneralIterator
 import pandas as pd
 import json
 
-# ––––––––––––––––––––– Is this still needed? ––––––––––––––––––––– #
+# ––––––––––––––––––––– Previous OMIM Retrieval ––––––––––––––––––––– #
 
 # Parses the OMIM genemap2.txt database to seperate each line into a 2D array
 def parse_omim(omim):
@@ -66,8 +66,8 @@ def get_all_errors(clinvar_dataset):
   errors = pd.read_csv(open_file, sep='\t')
   
   # Filter out based on any values that have cancer mentioned in any column
-  errors = errors[errors.apply(lambda x: x.astype(str).str.contains('cancer').any(), axis=1)]
-  return errors
+  cancer_errors = errors[errors.apply(lambda x: x.astype(str).str.contains('cancer').any(), axis=1)]
+  return cancer_errors
 
 # Get the good genome from a hardcoded file
 def get_good_genes():
@@ -105,8 +105,7 @@ def send_json(results):
   return json.dumps(results)
 
 def main():
-  # filename = sys.args[1]  
-  
+  filename = sys.args[1]  
   
   get_all_errors("clinvar_result.txt")
   
