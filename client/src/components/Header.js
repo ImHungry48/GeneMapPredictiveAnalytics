@@ -3,10 +3,12 @@ import React from "react";
 function Header() {
     return (
         <header className="header">
-            <div className="logo">Gene Map</div>
-            <ul className="navigation">
+            <div className="logo">Onco Genomic Insights</div>
+            <img className="thumbnail" src='/thumbnail_image.png'/>
+            <ul className="navigation">  
                 {/* THROW IN NAVIGATION HERE */}
             </ul>
+            
         </header>
     );
 }

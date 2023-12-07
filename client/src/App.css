@@ -14,11 +14,18 @@ body, html {
 /* Header Styles */
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 20px;
   background: #fff;
   text-decoration: underline;
+  z-index: 12;
+}
+
+.thumbnail {
+  height: auto;
+  max-width: 7%;
+  position: absolute;
+  right: -10px;
+  top: -4px;
 }
 
 .logo {
