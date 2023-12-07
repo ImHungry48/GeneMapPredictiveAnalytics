@@ -60,30 +60,14 @@ def print_matches(matches):
     
   return
 
-
+# Get all the errors from the clinvar datasets and return a list of all the errors
 def get_all_errors(clinvar_dataset):
-  # Get all the errors from the clinvar dataset
-  # and return a list of all the errors
   open_file = open(clinvar_dataset, "r")
-  errors = {}
+  errors = pd.read_csv(open_file, sep='\t')
   
-  
-  i = 0
-  for line in open_file:
-    if line[0] == "Name": continue
-    
-    line = line.split("\t")
-    if i < 10:
-      print(line)
-    
-    
-    # Parse the line
-    # Add to the dictionary
-    
-    i += 1
-  
-  
-  return
+  # Filter out based on any values that have cancer mentioned in any column
+  errors = errors[errors.apply(lambda x: x.astype(str).str.contains('cancer').any(), axis=1)]
+  return errors
 
 # Get the good genome from a hardcoded file
 def get_good_genes():
