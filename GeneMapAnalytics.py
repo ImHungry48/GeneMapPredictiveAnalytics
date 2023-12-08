@@ -60,12 +60,6 @@ def approximate_match(good_genome, patient_genome):
   
   return best_alignment
 
-  # # If we can use the biopython code:
-  # aligner = Align.PairwiseAligner()
-  # # aligner.mode = 'global' #Default mode is global, can switch over to local alignment mode when needed 
-  # score = aligner.score(good_genome, patient_genome) 
-  # # pairwise2.align.
-
 # Convert a SAM file to a FASTA file.
 def sam_to_fasta(sam_file, fasta_file):  
   samfile = pysam.AlignmentFile(sam_file, "r")
@@ -86,7 +80,7 @@ def sam_to_fasta(sam_file, fasta_file):
 
 # Run BWA-MEM to align sequencing reads to a reference genome.
 def run_bwa_mem(reference, reads, output_sam, assembly, minimap2_path="minimap2-master"):
-  # Command to run BWA-MEM: minimap2 -ax asm5 ref.fa asm.fa > aln.sam
+  # Command to run BWA-MEM: minimap2 -ax map-iclr ref.fa asm.fa > aln.sam
   command = [minimap2_path, "-ax", "map-iclr", reference, assembly]
 
   # Running BWA-MEM
@@ -96,9 +90,6 @@ def run_bwa_mem(reference, reads, output_sam, assembly, minimap2_path="minimap2-
   return
 
 
-# Return a string given the gene name and associated match
-def print_matches(matches):
-  return ''.join('Genome: ' + match[0] + ' Match: ' + match[1] for match in matches)
 
 # Get all the errors from the clinvar datasets and return a list of all the errors
 def get_all_errors(clinvar_dataset):
@@ -146,11 +137,19 @@ def run_analysis(patient_genome, good_genome):
   
   matches = approximate_match(good_genome, patient_genome)
   
-  pass
+  return errors
+
 
 # Converts the results dictionary to a JSON string to be sent to the frontend
 def send_json(results):
   return json.dumps(results)
+
+
+# Return a string given the gene name and associated match
+# (For debugging and testing purposes)
+def print_matches(matches):
+  return ''.join('Genome: ' + match[0] + ' Match: ' + match[1] for match in matches)
+
 
 def main():
   filename = sys.args[1]  
