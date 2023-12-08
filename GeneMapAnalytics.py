@@ -62,20 +62,18 @@ def approximate_match(good_genome, patient_genome):
 
 # Convert a SAM file to a FASTA file.
 def sam_to_fasta(sam_file, fasta_file):  
-  samfile = pysam.AlignmentFile(sam_file, "r")
-  
-
-  # with open(sam_file, 'r') as sam, open(fasta_file, 'w') as fasta:
-  #   for line in sam:
-  #     if line.startswith('@'):
-  #       # Skip header lines
-  #       continue
-  #     fields = line.strip().split('\t')
-  #     # qname = fields[0]  # Read identifier
-  #     seq = fields[9]    # Sequence
-
-  #     # Write to FASTA format
-  #     fasta.write(seq)
+  with pysam.AlignmentFile(sam_file, "r") as sam, open(fasta_file, "w") as fasta:
+    for read in sam:
+      # Skip unmapped reads
+      if read.is_unmapped: continue
+      
+      seq = read.query_sequence
+      
+      # Some SAM files might not include the sequence data
+      if seq is None: continue
+      
+      # qname = read.query_name # if query name is needed in the future
+      fasta.write(seq)
 
 
 # Run minimap2 to align sequencing reads to a reference genome.
