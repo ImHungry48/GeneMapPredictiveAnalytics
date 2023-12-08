@@ -46,11 +46,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <!-- <li><a href="#usage">Usage</a></li> -->
     <!-- <li><a href="#roadmap">Roadmap</a></li> -->
-    <!-- <li><a href="#contributing">Contributing</a></li> -->
+    <li><a href="#contributing">Contributing</a></li>
     <!-- <li><a href="#license">License</a></li> -->
-    <!-- <li><a href="#contact">Contact</a></li> -->
+    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -144,7 +144,7 @@ To get a local copy of the app running, follow the below steps.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-## Usage
+<!-- ## Usage -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -164,22 +164,17 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
 
 Github Links:
-- [A](Link to your github)
-- [B](Link to your github)
-- [C](Link to your github)
-- [D](Link to your github)
+- [darinkhan](https://github.com/darinkhan)
+- [Jlimb26](https://github.com/Jlimb26)
+- [ImHungry26](https://github.com/ImHungry48)
+- [subhasrivijay](https://github.com/subhasrivijay)
 
+</br>
 
 Project Link: [https://github.com/ImHungry48/GeneMapPredictiveAnalytics](https://github.com/ImHungry48/GeneMapPredictiveAnalytics)
 
