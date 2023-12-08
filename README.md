@@ -154,6 +154,14 @@ To get a local copy of the app running, follow the below steps.
 ## Usage
 
 
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+Thank you to all the mentors that have helped us throughout this project! We would in particular like to thank our professor, Benjamin Langmead, and all our TAs.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 [contributors-shield]: https://img.shields.io/github/contributors/ImHungry48/GeneMapPredictiveAnalytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/ImHungry48/GeneMapPredictiveAnalytics/graphs/contributors
