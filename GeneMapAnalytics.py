@@ -2,6 +2,7 @@ import sys
 import Bio as bp
 from Bio import SeqIO, Align
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
+from Bio.Blast.NCBIWWW import qblast
 import pandas as pd
 import json
 
@@ -43,14 +44,27 @@ def print_gene_names(filtered_omim):
 # Approximate matching algorithm between two genomes
 def approximate_match(good_genome, patient_genome):
 
+  blast_record = qblast("blastn", "nt", patient_genome)
   
-  # If we can use the biopython code:
-  aligner = Align.PairwiseAligner()
-  # aligner.mode = 'global' #Default mode is global, can switch over to local alignment mode when needed 
-  score = aligner.score(good_genome, patient_genome) 
-  # pairwise2.align.
+  min_value = blast_record.alignments[0].hsps[0]
+  min_alignment = blast_record.alignments[0]
   
-  pass
+  for alignment in blast_record.alignments:
+    
+    for hsp in alignment.hsps:
+      if hsp.expect < min_value:
+        min_value = hsp.expect
+        min_alignment = alignment
+  
+  return min_alignment
+
+  # # If we can use the biopython code:
+  # aligner = Align.PairwiseAligner()
+  # # aligner.mode = 'global' #Default mode is global, can switch over to local alignment mode when needed 
+  # score = aligner.score(good_genome, patient_genome) 
+  # # pairwise2.align.
+  
+  # pass
 
 
 # Print out genomes and what are the matches
@@ -71,22 +85,25 @@ def get_all_errors(clinvar_dataset):
 
 # Get the good genome from a hardcoded file
 def get_good_genes():
-  # Get the good genome from our database
-  # Need to find the file again and put in the repository
-  # and import from hardcoded file
-  filename = "" #TODO: Replace with actual filename
-  filename = open(filename, "r")
+  # Get the good genome from our database and import from hardcoded file
+  GRCh37 = "CRCh37_latest_genomic.fna"
+  GRCh38 = "CRCh38_latest_genomic.fna"
   
-  return FastqGeneralIterator(filename)
+  # filename = open(filename, "r")
+  
+  # return FastqGeneralIterator(filename)
+
+
 
 
 # Gets the patient genome from a given filename
 def get_patient_genes(filename):
-  open_file = open(filename, "r")
-  # Assuming Fastq format:
+  open_file = open(filename, "r")  
   
   # Quality-based filtering form:
-  # genome = SeqIO.parse(open_file, "fastq")
+  genome = SeqIO.parse(open_file, "fastq")
+  
+
   # Filtering on quality scores?
   
   # Fast form if we find that the above takes too long:
