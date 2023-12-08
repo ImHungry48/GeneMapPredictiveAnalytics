@@ -1,0 +1,2 @@
+NM_000551.4(VHL):c.36G>C (p.Glu12Asp)	VHL	E12D	not provided|Von Hippel-Lindau syndrome|Chuvash polycythemia|Nonpapillary renal cell carcinoma|Pheochromocytoma|Von Hippel-Lindau syndrome|Chuvash polycythemia|Hereditary cancer-predisposing syndrome	Uncertain significance(Last reviewed: Jan 17, 2023)	criteria provided, multiple submitters, no conflicts	VCV000419711	3	10183567	3	10141883	419711	406058	rs973493604	NC_000003.12:10141882:G:C
+3: 10141883 (GRCh38) 
