@@ -3,7 +3,7 @@ import React from "react";
 function Loading() {
 
     return(
-        <div>Loading...</div>
+        <div class='loading-text'>An email will be sent to the address provided when the data is ready!</div>
     )
 }
 
