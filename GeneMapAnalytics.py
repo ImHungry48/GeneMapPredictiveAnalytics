@@ -78,12 +78,12 @@ def sam_to_fasta(sam_file, fasta_file):
   #     fasta.write(seq)
 
 
-# Run BWA-MEM to align sequencing reads to a reference genome.
-def run_bwa_mem(reference, reads, output_sam, assembly, minimap2_path="minimap2-master"):
-  # Command to run BWA-MEM: minimap2 -ax map-iclr ref.fa asm.fa > aln.sam
+# Run minimap2 to align sequencing reads to a reference genome.
+def run_minimap2(reference, reads, output_sam, assembly, minimap2_path="minimap2-master"):
+  # Command to run minimap2: minimap2 -ax map-iclr ref.fa asm.fa > aln.sam
   command = [minimap2_path, "-ax", "map-iclr", reference, assembly]
 
-  # Running BWA-MEM
+  # Running minimap2
   with open(output_sam, "w") as output_file:
     subprocess.run(command, stdout=output_file)
   
@@ -130,7 +130,7 @@ def get_patient_genes(filename):
 # Returns a dictionary of the results
 def run_analysis(patient_genome, good_genome):
   # Create an output file with the SAM alignment
-  run_bwa_mem("./GRCh38_latest_genomic.fna.gz", "", "./output.sam")  
+  run_minimap2("./GRCh38_latest_genomic.fna.gz", "", "./output.sam")  
   
   # Process the SAM file to get the genome
   matched_genome = sam_to_fasta("./output.sam", "reference.fasta")
@@ -158,7 +158,7 @@ def main():
   
   # good_genome = get_good_genes()
   # patient_genome = get_patient_genes(filename)
-  # TODO: update bwa-mem reference path
+  # TODO: update minimap2 reference path
   
   # results = run_analysis(patient_genome,good_genome)
   
