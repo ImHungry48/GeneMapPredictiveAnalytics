@@ -96,55 +96,41 @@ To get a local copy of the app running, follow the below steps.
 
 1. Install the prerequistes:
 
+  * Clang or another method of running C code
   * Npm:
     * Install npm (requires Node.js): https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
     * Update npm:
-    ```sh
-    npm install npm@latest -g
-    ```
-   
-  * Homebrew (Mac/Linux):
-    ```sh
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    ```
-  
-  * Watchman:
-    * Windows: https://facebook.github.io/watchman/docs/install.html#windows
-    * Mac: 
       ```sh
-      brew update
-      brew install watchman
+      npm install npm@latest -g
       ```
-
-  * Expo (Requires Watchman):
+  
+2. Navigate to the client folder
     ```sh
-    sudo npm install --global expo-cli
+    cd client
     ```
 
-1. Install NPM packages
-  ```sh
-  npm install
-  ```
+3. Install NPM packages
+    ```sh
+    npm install
+    ```
 
-2. Build the dist files while navigated to the `client` folder
-  ```sh
-  npm run build
-  ```
+4. Build the dist files while navigated to the `client` folder
+    ```sh
+    npm run build
+    ```
 
-3. Start the server (starts expo automatically) (while navigated to the `client` folder)
+5. Start the server (starts expo automatically) (while navigated to the `client` folder)
     ```sh
     node ../index.js
     ```    
 
-4. Start the Flask application (while navigated to the `client` folder)
-  ```sh
-  python3 ../app.py
-  ```
+6. Start the Flask application (while navigated to the `client` folder)
+    ```sh
+    python3 ../app.py
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
