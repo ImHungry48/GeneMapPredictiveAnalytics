@@ -47,32 +47,26 @@ def approximate_match(good_genome, patient_genome):
   blast_record = qblast("blastn", "nt", patient_genome)
   
   min_value = blast_record.alignments[0].hsps[0]
-  min_alignment = blast_record.alignments[0]
+  best_alignment = blast_record.alignments[0]
   
   for alignment in blast_record.alignments:
     
     for hsp in alignment.hsps:
       if hsp.expect < min_value:
         min_value = hsp.expect
-        min_alignment = alignment
+        best_alignment = alignment
   
-  return min_alignment
+  return   best_alignment
 
   # # If we can use the biopython code:
   # aligner = Align.PairwiseAligner()
   # # aligner.mode = 'global' #Default mode is global, can switch over to local alignment mode when needed 
   # score = aligner.score(good_genome, patient_genome) 
   # # pairwise2.align.
-  
-  # pass
 
-
-# Print out genomes and what are the matches
+# Return a string given the gene name and associated match
 def print_matches(matches):
-  for match in matches:
-    print(match)
-    
-  return
+  return ''.join('Genome: ' + match[0] + ' Match: ' + match[1] for match in matches)
 
 # Get all the errors from the clinvar datasets and return a list of all the errors
 def get_all_errors(clinvar_dataset):
@@ -80,7 +74,8 @@ def get_all_errors(clinvar_dataset):
   errors = pd.read_csv(open_file, sep='\t')
   
   # Filter out based on any values that have cancer mentioned in any column
-  cancer_errors = errors[errors.apply(lambda x: x.astype(str).str.contains('cancer').any(), axis=1)]
+  cancer_errors = errors[errors.apply(lambda x: 
+    x.astype(str).str.contains('cancer').any(), axis=1)]
   return cancer_errors
 
 # Get the good genome from a hardcoded file
@@ -93,9 +88,6 @@ def get_good_genes():
   
   # return FastqGeneralIterator(filename)
 
-
-
-
 # Gets the patient genome from a given filename
 def get_patient_genes(filename):
   open_file = open(filename, "r")  
@@ -103,7 +95,7 @@ def get_patient_genes(filename):
   # Quality-based filtering form:
   genome = SeqIO.parse(open_file, "fastq")
   
-
+  return genome
   # Filtering on quality scores?
   
   # Fast form if we find that the above takes too long:
