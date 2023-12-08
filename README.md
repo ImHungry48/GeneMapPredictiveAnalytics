@@ -95,8 +95,6 @@ To get a local copy of the app running, follow the below steps.
 ### Installation
 
 1. Install the prerequistes:
-  
- * Install the Expo Go application on your mobile device from the Google Play Store or Apple App Store
 
   * Npm:
     * Install npm (requires Node.js): https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
@@ -124,27 +122,25 @@ To get a local copy of the app running, follow the below steps.
     sudo npm install --global expo-cli
     ```
 
-1. Clone the repo
-    ```sh
-    git clone https://github.com/jhu-oose-f22/team-unishop
-    ```
+1. Install NPM packages
+  ```sh
+  npm install
+  ```
 
-2. Install NPM packages
-    ```sh
-    cd app
-    npx expo install
-    ```
+2. Build the dist files while navigated to the `client` folder
+  ```sh
+  npm run build
+  ```
 
-3. Start the server (starts expo automatically)
+3. Start the server (starts expo automatically) (while navigated to the `client` folder)
     ```sh
-    npm start  
-    ```
-      or, using npx:
-    ```sh
-    npx expo start  
-    ```
+    node ../index.js
+    ```    
 
-4. Ensure your mobile device and computer that is running the server are on the same wifi network, then scan the terminal QR code with your phone (in the Camera app for iOS, or in the Expo Go app for Android).
+4. Start the Flask application (while navigated to the `client` folder)
+  ```sh
+  python3 ../app.py
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
