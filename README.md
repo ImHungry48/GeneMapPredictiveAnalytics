@@ -46,11 +46,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <!-- <li><a href="#usage">Usage</a></li> -->
     <!-- <li><a href="#roadmap">Roadmap</a></li> -->
-    <!-- <li><a href="#contributing">Contributing</a></li> -->
+    <li><a href="#contributing">Contributing</a></li>
     <!-- <li><a href="#license">License</a></li> -->
-    <!-- <li><a href="#contact">Contact</a></li> -->
+    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -87,67 +87,98 @@ To get a local copy of the app running, follow the below steps.
 
 * Node.js
 * npm
-* homebrew
-* expo [can be run using npx]
-* Watchman
-* Expo Go application on your mobile device (available on both iOS and Android Play Store)
+* Clang or another method of running C code
+* Python3
+  * pip
 
 ### Installation
 
 1. Install the prerequistes:
 
+  * Clang or another method of running C code
   * Npm:
     * Install npm (requires Node.js): https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
     * Update npm:
+      ```sh
+      npm install npm@latest -g
+      ```
+  * Python3 packages:
     ```sh
-    npm install npm@latest -g
-    ```
-   
-  * Homebrew (Mac/Linux):
-    ```sh
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    python3 -m pip install -r requirements.txt
     ```
   
-  * Watchman:
-    * Windows: https://facebook.github.io/watchman/docs/install.html#windows
-    * Mac: 
-      ```sh
-      brew update
-      brew install watchman
-      ```
-
-  * Expo (Requires Watchman):
+2. Make the minimap2 executable:
     ```sh
-    sudo npm install --global expo-cli
+    cd minimap2-master
+    make
+    cd ..
     ```
 
-1. Install NPM packages
-  ```sh
-  npm install
-  ```
+ 
+3. Navigate to the client folder
+    ```sh
+    cd client
+    ```
 
-2. Build the dist files while navigated to the `client` folder
-  ```sh
-  npm run build
-  ```
+4. Install NPM packages
+    ```sh
+    npm install
+    ```
 
-3. Start the server (starts expo automatically) (while navigated to the `client` folder)
+5. Build the dist files while navigated to the `client` folder
+    ```sh
+    npm run build
+    ```
+
+6. Start the server (starts express automatically) (while navigated to the `client` folder)
     ```sh
     node ../index.js
     ```    
 
-4. Start the Flask application (while navigated to the `client` folder)
-  ```sh
-  python3 ../app.py
-  ```
+7. Start the Flask application (while navigated to the `client` folder)
+    ```sh
+    python3 ../app.py
+    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+<!-- ## Usage -->
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Any contributions you make are **greatly appreciated**!
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/NewFeature`)
+3. Commit your Changes (`git commit -m 'Add some NewFeature'`)
+4. Push to the Branch (`git push origin feature/NewFeature`)
+5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- CONTACT -->
+## Contact
 
-<!-- USAGE EXAMPLES -->
-## Usage
+Github Links:
+- [darinkhan](https://github.com/darinkhan)
+- [Jlimb26](https://github.com/Jlimb26)
+- [ImHungry26](https://github.com/ImHungry48)
+- [subhasrivijay](https://github.com/subhasrivijay)
+
+</br>
+
+Project Link: [https://github.com/ImHungry48/GeneMapPredictiveAnalytics](https://github.com/ImHungry48/GeneMapPredictiveAnalytics)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- ACKNOWLEDGMENTS -->
@@ -159,6 +190,9 @@ Thank you to all the mentors that have helped us throughout this project! We wou
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/ImHungry48/GeneMapPredictiveAnalytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/ImHungry48/GeneMapPredictiveAnalytics/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/ImHungry48/GeneMapPredictiveAnalytics.svg?style=for-the-badge
