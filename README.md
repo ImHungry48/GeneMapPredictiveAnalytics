@@ -131,7 +131,7 @@ To get a local copy of the app running, follow the below steps.
     npm run build
     ```
 
-6. Start the server (starts expo automatically) (while navigated to the `client` folder)
+6. Start the server (starts express automatically) (while navigated to the `client` folder)
     ```sh
     node ../index.js
     ```    
