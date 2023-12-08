@@ -87,10 +87,9 @@ To get a local copy of the app running, follow the below steps.
 
 * Node.js
 * npm
-* homebrew
-* expo [can be run using npx]
-* Watchman
-* Expo Go application on your mobile device (available on both iOS and Android Play Store)
+* Clang or another method of running C code
+* Python3
+  * pip
 
 ### Installation
 
@@ -104,6 +103,10 @@ To get a local copy of the app running, follow the below steps.
       ```sh
       npm install npm@latest -g
       ```
+  * Python3 packages:
+    ```sh
+    python3 -m pip install -r requirements.txt
+    ```
   
 2. Make the minimap2 executable:
     ```sh
