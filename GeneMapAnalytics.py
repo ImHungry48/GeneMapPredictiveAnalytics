@@ -4,6 +4,8 @@ from Bio import SeqIO, Align
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
 from Bio.Blast.NCBIWWW import qblast
 import pandas as pd
+import pysam
+import subprocess
 import json
 
 # ––––––––––––––––––––– Previous OMIM Retrieval ––––––––––––––––––––– #
@@ -56,13 +58,43 @@ def approximate_match(good_genome, patient_genome):
         min_value = hsp.expect
         best_alignment = alignment
   
-  return   best_alignment
+  return best_alignment
 
   # # If we can use the biopython code:
   # aligner = Align.PairwiseAligner()
   # # aligner.mode = 'global' #Default mode is global, can switch over to local alignment mode when needed 
   # score = aligner.score(good_genome, patient_genome) 
   # # pairwise2.align.
+
+# Convert a SAM file to a FASTA file.
+def sam_to_fasta(sam_file, fasta_file):  
+  samfile = pysam.AlignmentFile(sam_file, "r")
+  
+
+  # with open(sam_file, 'r') as sam, open(fasta_file, 'w') as fasta:
+  #   for line in sam:
+  #     if line.startswith('@'):
+  #       # Skip header lines
+  #       continue
+  #     fields = line.strip().split('\t')
+  #     # qname = fields[0]  # Read identifier
+  #     seq = fields[9]    # Sequence
+
+  #     # Write to FASTA format
+  #     fasta.write(seq)
+
+
+# Run BWA-MEM to align sequencing reads to a reference genome.
+def run_bwa_mem(reference, reads, output_sam, assembly, minimap2_path="minimap2-master"):
+  # Command to run BWA-MEM: minimap2 -ax asm5 ref.fa asm.fa > aln.sam
+  command = [minimap2_path, "-ax", "map-iclr", reference, assembly]
+
+  # Running BWA-MEM
+  with open(output_sam, "w") as output_file:
+    subprocess.run(command, stdout=output_file)
+  
+  return
+
 
 # Return a string given the gene name and associated match
 def print_matches(matches):
@@ -106,7 +138,14 @@ def get_patient_genes(filename):
 # Runs the different analyses on the patient genome
 # Returns a dictionary of the results
 def run_analysis(patient_genome, good_genome):
-  # First do 
+  # Create an output file with the SAM alignment
+  run_bwa_mem("./GRCh38_latest_genomic.fna.gz", "", "./output.sam")  
+  
+  # Process the SAM file to get the genome
+  matched_genome = sam_to_fasta("./output.sam", "reference.fasta")
+  
+  matches = approximate_match(good_genome, patient_genome)
+  
   pass
 
 # Converts the results dictionary to a JSON string to be sent to the frontend
@@ -120,6 +159,8 @@ def main():
   
   # good_genome = get_good_genes()
   # patient_genome = get_patient_genes(filename)
+  # TODO: update bwa-mem reference path
+  
   # results = run_analysis(patient_genome,good_genome)
   
   # TODO: REMOVE THE FOLLOWING LINE
