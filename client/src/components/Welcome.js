@@ -3,7 +3,6 @@ import '../App.css';
 import InputField from './InputField'
 import VerticalLine from './VerticalLine';
 import About from './About';
-import Header from './Header';
 
 
 

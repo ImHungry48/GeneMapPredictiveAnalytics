@@ -4,14 +4,12 @@
 * {
   font-family: 'Inter', sans-serif;
 }
-/* General Styles */
+
 body, html {
   margin: 0;
   padding: 0;
 }
 
-
-/* Header Styles */
 header {
   display: flex;
   padding: 20px;
@@ -34,7 +32,6 @@ header {
   cursor: pointer;
 }
 
-
 .input-field {
   display: flex; 
   flex-direction: column;
@@ -50,7 +47,6 @@ header {
   font-weight: bold;
   font-size: 26px;
   padding-top: 30px;
-  /* transform: translateX(-110px); */
 }
 
 .email-input {
@@ -71,6 +67,12 @@ header {
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.5s;
+}
+
+.upload-button.disabled {
+  background-color: gray;
+  color: #cccccc;
+  cursor: not-allowed;
 }
 
 .upload-button:hover {
@@ -100,5 +102,4 @@ header {
 .faded {
   opacity: 0
 }
-
 
