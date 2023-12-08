@@ -105,27 +105,35 @@ To get a local copy of the app running, follow the below steps.
       npm install npm@latest -g
       ```
   
-2. Navigate to the client folder
+2. Make the minimap2 executable:
+    ```sh
+    cd minimap2-master
+    make
+    cd ..
+    ```
+
+ 
+3. Navigate to the client folder
     ```sh
     cd client
     ```
 
-3. Install NPM packages
+4. Install NPM packages
     ```sh
     npm install
     ```
 
-4. Build the dist files while navigated to the `client` folder
+5. Build the dist files while navigated to the `client` folder
     ```sh
     npm run build
     ```
 
-5. Start the server (starts expo automatically) (while navigated to the `client` folder)
+6. Start the server (starts expo automatically) (while navigated to the `client` folder)
     ```sh
     node ../index.js
     ```    
 
-6. Start the Flask application (while navigated to the `client` folder)
+7. Start the Flask application (while navigated to the `client` folder)
     ```sh
     python3 ../app.py
     ```
