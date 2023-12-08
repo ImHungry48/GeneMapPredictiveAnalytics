@@ -1,0 +1,14 @@
+                                                   Name  ... Unnamed: 15
+0           NM_003738.5(PTCH2):c.3347C>T (p.Pro1116Leu)  ...         NaN
+1     GRCh38/hg38 1q31.1-42.11(chr1:187143981-224299...  ...         NaN
+2          NM_024529.5(CDC73):c.8_10delinsCT (p.Asp3fs)  ...         NaN
+3              NM_024529.5(CDC73):c.13_16del (p.Leu5fs)  ...         NaN
+4              NM_024529.5(CDC73):c.128G>A (p.Trp43Ter)  ...         NaN
+...                                                 ...  ...         ...
+4733            NC_000022.10:g.(?_30051485)_30051628del  ...         NaN
+4734               NM_000268.3(NF2):c.-443-?_*3798+?del  ...         NaN
+4735                                          p.X214Trp  ...         NaN
+4736                                 SMARCB1, 19-BP DEL  ...         NaN
+4737                                          PRKN, DEL  ...         NaN
+
+[4738 rows x 16 columns]
