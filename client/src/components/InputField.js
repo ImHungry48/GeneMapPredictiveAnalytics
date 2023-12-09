@@ -33,6 +33,11 @@ function InputField() {
         }, 1100)
     }
 
+    let isValidEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
     // Checks for the file to finish loading so the user could press the upload button
     useEffect(() => {
         const socket = io('http://localhost:3000');

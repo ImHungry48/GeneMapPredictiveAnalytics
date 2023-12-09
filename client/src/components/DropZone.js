@@ -64,12 +64,12 @@ function DropZone() {
         await Promise.all(chunkPromises);
 
         // After all chunks are uploaded, call the reassemble endpoint
-        fetch('/api/reassemble-file/chunk', {
+        fetch('/api/reassemble-file/result', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ filename: 'chunk' }) // Or any other data if needed
+            body: JSON.stringify({ filename: 'result' }) // Or any other data if needed
         })
             .then(response => response.text())
             .then(result => console.log(result))
