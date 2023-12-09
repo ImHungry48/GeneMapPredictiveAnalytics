@@ -1,7 +1,6 @@
 import sys
-import Bio as bp
-from Bio import SeqIO, Align
-from Bio.SeqIO.QualityIO import FastqGeneralIterator
+from Bio import SeqIO
+# from Bio.SeqIO.QualityIO import FastqGeneralIterator
 from Bio.Blast.NCBIWWW import qblast
 import pandas as pd
 import pysam
@@ -44,7 +43,7 @@ def print_gene_names(filtered_omim):
 # –––––––––––––––––––––—— New Code: Matching –––––––––––––––––––––—— #
 
 # Approximate matching algorithm between two genomes
-def approximate_match(good_genome, patient_genome):
+def approximate_match(patient_genome):
 
   blast_record = qblast("blastn", "nt", patient_genome)
   
@@ -77,9 +76,9 @@ def sam_to_fasta(sam_file, fasta_file):
 
 
 # Run minimap2 to align sequencing reads to a reference genome.
-def run_minimap2(reference, reads, output_sam, assembly, minimap2_path="minimap2-master"):
+def run_minimap2(reference, reads, output_sam, minimap2_path="./minimap2-master"):
   # Command to run minimap2: minimap2 -ax map-iclr ref.fa asm.fa > aln.sam
-  command = [minimap2_path, "-ax", "map-iclr", reference, assembly]
+  command = [minimap2_path, "-ax", "map-iclr", reference, reads]
 
   # Running minimap2
   with open(output_sam, "w") as output_file:
@@ -90,7 +89,7 @@ def run_minimap2(reference, reads, output_sam, assembly, minimap2_path="minimap2
 
 
 # Get all the errors from the clinvar datasets and return a list of all the errors
-def get_all_errors(clinvar_dataset):
+def get_all_cancer_mutations(clinvar_dataset):
   open_file = open(clinvar_dataset, "r")
   errors = pd.read_csv(open_file, sep='\t')
   
@@ -100,10 +99,10 @@ def get_all_errors(clinvar_dataset):
   return cancer_errors
 
 # Get the good genome from a hardcoded file
-def get_good_genes():
+# def get_good_genes():
   # Get the good genome from our database and import from hardcoded file
-  GRCh37 = "CRCh37_latest_genomic.fna"
-  GRCh38 = "CRCh38_latest_genomic.fna"
+  # GRCh37 = "CRCh37_latest_genomic.fna"
+  # GRCh38 = "CRCh38_latest_genomic.fna"
   
   # filename = open(filename, "r")
   
@@ -117,25 +116,20 @@ def get_patient_genes(filename):
   genome = SeqIO.parse(open_file, "fastq")
   
   return genome
-  # Filtering on quality scores?
-  
-  # Fast form if we find that the above takes too long:
-  # Operates on tuples of (title, sequence, quality) rather than SeqRecord objects
-  # genome = SeqIO.QualityIO.FastqGeneralIterator(open_file)
 
 
 # Runs the different analyses on the patient genome
 # Returns a dictionary of the results
-def run_analysis(patient_genome, good_genome):
+def run_analysis(patient_genome, good_genome="./GRCh38_latest_genomic.fna.gz"):
   # Create an output file with the SAM alignment
-  run_minimap2("./GRCh38_latest_genomic.fna.gz", "", "./output.sam")  
+  run_minimap2("./GRCh38_latest_genomic.fna.gz", patient_genome, "./output.sam")  
   
   # Process the SAM file to get the genome
   matched_genome = sam_to_fasta("./output.sam", "reference.fasta")
   
-  matches = approximate_match(good_genome, patient_genome)
+  matches = approximate_match(good_genome, matched_genome)
   
-  return errors
+  return matches
 
 
 # Converts the results dictionary to a JSON string to be sent to the frontend
@@ -150,18 +144,13 @@ def print_matches(matches):
 
 
 def main():
-  filename = sys.args[1]  
-  
-  get_all_errors("clinvar_result.txt")
-  
-  # good_genome = get_good_genes()
-  # patient_genome = get_patient_genes(filename)
-  # TODO: update minimap2 reference path
-  
-  # results = run_analysis(patient_genome,good_genome)
-  
-  # TODO: REMOVE THE FOLLOWING LINE
-  results = {"test1": 0.53, "test2": 0.23, "test3": 0.12, "test4": 0.02, "test5": 0.01}
+  filename = sys.argv[1]
+
+  get_all_cancer_mutations("clinvar_result.txt")
+  results = run_analysis("test")
+    
+  # Test: remove the following line
+  # results = {"test1": 0.53, "test2": 0.23, "test3": 0.12, "test4": 0.02, "test5": 0.01}
   
   return send_json(results)
   
