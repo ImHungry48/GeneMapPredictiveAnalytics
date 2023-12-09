@@ -171,7 +171,7 @@ Don't forget to give the project a star! Thanks again!
 Github Links:
 - [darinkhan](https://github.com/darinkhan)
 - [Jlimb26](https://github.com/Jlimb26)
-- [ImHungry26](https://github.com/ImHungry48)
+- [ImHungry48](https://github.com/ImHungry48)
 - [subhasrivijay](https://github.com/subhasrivijay)
 
 </br>
