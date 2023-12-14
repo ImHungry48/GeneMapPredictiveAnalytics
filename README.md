@@ -125,18 +125,20 @@ To get a local copy of the app running, follow the below steps.
     ```sh
     npm install
     ```
+  
+5. Add a file called `final_upload` to the base file structure (i.e. `genemappredictiveanalytics/final_upload`)
 
-5. Build the dist files while navigated to the `client` folder
+6. Build the dist files while navigated to the `client` folder
     ```sh
     npm run build
     ```
 
-6. Start the server (starts express automatically) (while navigated to the `client` folder)
+7. Start the server (starts express automatically) (while navigated to the `client` folder)
     ```sh
     node ../index.js
     ```    
 
-7. Start the Flask application (while navigated to the `client` folder)
+8. Start the Flask application (while navigated to the `client` folder)
     ```sh
     python3 ../app.py
     ```
